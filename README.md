@@ -16,7 +16,7 @@ Please install the [Android SDK][google-android-sdk] then point an environment v
 Commands:
 
 # Eclipse project files (or pom.xml import - [m2eclipse-plugin][m2eclipse] or in Netbeans)
-mvn eclipse:eclipse
+	mvn eclipse:eclipse
 
 # Tidy up
 	mvn clean
