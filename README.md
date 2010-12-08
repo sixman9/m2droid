@@ -49,6 +49,6 @@ footing, I've found it slightly difficult to configure within complex projects i
 Maven library/dependency management within Ant) at 
 http://ptrthomas.wordpress.com/2009/03/08/why-you-should-use-the-maven-ant-tasks-instead-of-maven-or-ivy/. 
 
-BTW Maven 3 will have programmatic configuration via a number of languages, so maybe that advance level things ;-) .
+BTW Maven 3 will have programmatic configuration via a number of languages, so maybe that advance things, considerably ;-) .
 
 I'd like to thank [Wakaleo Training](http://www.wakaleo.com/blog/302-android-development-with-maven/ "Android development with Maven") for their excellent Android with Maven tutorial(s).
