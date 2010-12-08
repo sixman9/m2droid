@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, firstAndroidActivity!</string>
+    <string name="app_name">FirstAndroidApp</string>
+<string name="button01Lbl">To Page 2</string>
+</resources>
