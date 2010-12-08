@@ -34,8 +34,6 @@ Or combine the above:
 
 	mvn clean package android:deploy
 
-## Useful URLs
-
 [google-android-sdk]: http://developer.android.com/sdk/installing.html
 [google-eclipse-adt-plugin]: http://developer.android.com/sdk/eclipse-adt.html 
 [m2eclipse]: http://m2eclipse.sonatype.org/installing-m2eclipse.html
