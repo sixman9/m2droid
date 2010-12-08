@@ -19,20 +19,22 @@ Commands:
 mvn eclipse:eclipse
 
 # Tidy up
-mvn clean
+	mvn clean
 
 # Compile the .apk file etc.
-mvn package
+	mvn package
 
 #Install and start emulator
-mvn android:emulator-start
+	mvn android:emulator-start
  
 #Deploy to attached device 
-mvn android:deploy
+	mvn android:deploy
 
 Or combine the above:
 
 	mvn clean package android:deploy
+
+Don't forget to either name an emulator 'em22' or change the pom.xml accordingly.
 
 [google-android-sdk]: http://developer.android.com/sdk/installing.html
 [google-eclipse-adt-plugin]: http://developer.android.com/sdk/eclipse-adt.html 
@@ -42,7 +44,7 @@ Or combine the above:
 [maven]: http://maven.apache.org/
 
 P.S. Why use Maven? Maven is great for distributing projects and getting a quick
-footing, I've found it slightly complex to configure within complex projects it hasn't been as 
+footing, I've found it slightly difficult to configure within complex projects it hasn't been as 
 'flexible' as Apache Ant IMHO. Have a look at Maven and Ant together (for 
 Maven library/dependency management within Ant) at 
 http://ptrthomas.wordpress.com/2009/03/08/why-you-should-use-the-maven-ant-tasks-instead-of-maven-or-ivy/. 
