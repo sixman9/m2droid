@@ -13,3 +13,6 @@
 
 #Maven build folder
 target/
+
+#Mac
+*.DS_Store
