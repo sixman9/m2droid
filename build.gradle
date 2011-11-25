@@ -1,0 +1,118 @@
+//See https://github.com/jvoegele/gradle-android-plugin for plugin usage
+
+// gradle-android plugin configuration
+buildscript {
+    repositories {
+      mavenLocal()
+      mavenRepo url: "http://jvoegele.com/maven2/"
+	mavenCentral()
+    }
+
+	def gradleAndroidPluginVersion = '1.1.0-SNAPSHOT'
+
+    dependencies {
+      //classpath 'com.jvoegele.gradle.plugins:android-plugin:1.0.0-SNAPSHOT'
+      classpath "com.jvoegele.gradle.plugins:gradle-android-plugin:$gradleAndroidPluginVersion"
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+apply plugin: 'android'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: 'http://repository.excilys.com/content/repositories/releases/'
+}
+
+// Sets the package version
+version = "0.0.1-SNAPSHOT"
+
+// Signing configuration, valid for all builds (1)
+/*androidPackage {
+	keyStore = "path/to/my/keystore"
+	keyAlias = "my-key-alias"
+	keyStorePassword = "mystorepass"
+	keyAliasPassword = "myaliaspass"
+}*/
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src'
+    }
+  }
+}
+
+
+def androidAnnotationsVersion = '2.1.2'
+
+dependencies {
+    compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
+}
+
+// Configure the filtering of resources with properties from the Gradle's project scope (2)
+processResources {
+	expand (project.properties)
+}
+// Configure a dedicated debug build (3)
+task configureDebug << {
+    jar.classifier = "debug"
+}
+// Configure a dedicated release build (4)
+task configureRelease << {
+    proguard.enabled = true
+}
+
+// if you want to use the gradle wrapper
+task('wrapper', type: Wrapper).configure {
+    gradleVersion = '1.0-milestone-6'
+}
+
+def versionCompatibility = 1.6
+
+eclipse {
+	project {
+		comment = ""
+
+		buildCommand "org.eclipse.jdt.core.javabuilder"
+
+	        natures	"com.springsource.sts.gradle.core.nature",
+			//"ch.epfl.lamp.sdt.core.scalanature",
+			"org.eclipse.jdt.core.javanature"
+			//"com.springsource.sts.grails.core.nature",
+			//"org.eclipse.jdt.groovy.core.groovyNature",
+	}
+
+	classpath {
+        	containers "com.springsource.sts.gradle.classpathcontainer"
+	}
+}
+
+idea {
+	project {
+        	jdkName = versionCompatibility
+
+		//javaVersion = 'Android 2.2 Platform'
+
+		ipr {
+        		withXml { provider ->
+            		def node = provider.asNode()
+			
+            		// Set Gradle home
+            		def gradleSettings = node.appendNode('component', [name: 'GradleSettings'])
+            		gradleSettings.appendNode('option', [name: 'SDK_HOME', value: gradle.gradleHomeDir])
+        		}
+		}
+	}
+
+	module {
+        	downloadJavadoc = true
+    	}
+}
+
+androidProcessResources.dependsOn(clean)
+idea.dependsOn(cleanIdea)
+
+defaultTasks 'assemble'
