@@ -8,11 +8,10 @@ buildscript {
 	mavenCentral()
     }
 
-	def gradleAndroidPluginVersion = '1.1.0-SNAPSHOT'
+	def gradleAndroidPluginVersion = '1.0.0'
 
     dependencies {
-      //classpath 'com.jvoegele.gradle.plugins:android-plugin:1.0.0-SNAPSHOT'
-      classpath "com.jvoegele.gradle.plugins:gradle-android-plugin:$gradleAndroidPluginVersion"
+	classpath "com.jvoegele.gradle.plugins:android-plugin:$gradleAndroidPluginVersion"
     }
 }
 
@@ -20,10 +19,11 @@ buildscript {
 
 apply plugin: 'android'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
-    mavenRepo urls: 'http://repository.excilys.com/content/repositories/releases/'
+    mavenRepo url: 'http://repository.excilys.com/content/repositories/releases/'
 }
 
 // Sets the package version
@@ -112,7 +112,7 @@ idea {
     	}
 }
 
-androidProcessResources.dependsOn(clean)
-idea.dependsOn(cleanIdea)
+tasks.androidProcessResources.dependsOn(clean)
+tasks.idea.dependsOn(cleanIdea)
 
 defaultTasks 'assemble'
