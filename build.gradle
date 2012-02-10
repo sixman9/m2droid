@@ -8,10 +8,11 @@ buildscript {
 	mavenCentral()
     }
 
-	def gradleAndroidPluginVersion = '1.0.0'
+	def gradleAndroidPluginVersion = '1.1.0'
 
     dependencies {
-	classpath "com.jvoegele.gradle.plugins:android-plugin:$gradleAndroidPluginVersion"
+	//See https://github.com/jvoegele/gradle-android-plugin
+	classpath "org.gradle.api.plugins:gradle-android-plugin:$gradleAndroidPluginVersion"
     }
 }
 
@@ -20,6 +21,9 @@ buildscript {
 apply plugin: 'android'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+
+//Template plugin - very useful for project directory structure
+apply from: 'http://launchpad.net/gradle-templates/trunk/latest/+download/apply.groovy'
 
 repositories {
     mavenCentral()
@@ -46,7 +50,7 @@ sourceSets {
 }
 
 
-def androidAnnotationsVersion = '2.1.2'
+def androidAnnotationsVersion = '2.4'
 
 dependencies {
     compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
@@ -67,7 +71,7 @@ task configureRelease << {
 
 // if you want to use the gradle wrapper
 task('wrapper', type: Wrapper).configure {
-    gradleVersion = '1.0-milestone-6'
+    gradleVersion = '1.0-milestone-7'
 }
 
 def versionCompatibility = 1.6

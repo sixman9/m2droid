@@ -16,3 +16,5 @@ target/
 
 #Mac
 *.DS_Store
+.gradle/
+build/
